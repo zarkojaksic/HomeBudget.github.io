@@ -1,0 +1,177 @@
+/* Osnovni stilovi */
+body {
+  background-color: #111;
+  color: #fff700;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #222;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+}
+
+h2, h3 {
+  color: #fff700;
+  text-align: center;
+}
+
+input, select, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #333;
+  color: #fff700;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button, .btn {
+  background-color: #fff700;
+  color: #111;
+  border: none;
+  padding: 10px 18px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s;
+}
+
+button:hover, .btn:hover {
+  background-color: #ffd000;
+}
+
+a {
+  color: #fff700;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Sekcije */
+.section {
+  margin-bottom: 30px;
+}
+
+/* Tablice za prikaz prihoda/troškova */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #fff700;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #333;
+}
+
+td {
+  background-color: #1a1a1a;
+}
+
+/* Lista članova (više se ne koristi, ali ostavljeno ako zatreba) */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background: #1a1a1a;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li button {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+/* Accordion */
+.accordion-godina, .accordion-mjesec {
+  margin-bottom: 20px;
+  border: 1px solid #fff700;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.accordion-godina h3,
+.accordion-mjesec h4 {
+  background-color: #333;
+  color: #fff700;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.accordion-godina.open > .accordion-mjesec,
+.accordion-mjesec.open > table,
+.accordion-mjesec.open > .ukupno-row {
+  display: block;
+}
+
+.accordion-mjesec > table,
+.accordion-mjesec > .ukupno-row {
+  display: none;
+}
+
+/* Ukupno red */
+.ukupno-row {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #1a1a1a;
+  color: #fff700;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responzivnost */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  th::before, td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    color: #fff700;
+    text-align: left;
+  }
+}

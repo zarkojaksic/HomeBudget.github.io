@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kućni proračun</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Dobrodošli u kućni proračun</h2>
+
+    <!-- Dodaj prihod -->
+    <div class="section">
+      <h3>Dodaj prihod</h3>
+      <input type="date" id="prihodDatum" />
+      <select id="prihodKategorija">
+        <option value="Plaća">Plaća</option>
+        <option value="Dječji doplatak">Dječji doplatak</option>
+        <option value="Nagrada">Nagrada</option>
+        <option value="Dar">Dar</option>
+        <option value="Povrat poreza">Povrat poreza</option>
+        <option value="Penzija">Penzija</option>
+        <option value="Stipendija">Stipendija</option>
+        <option value="Prihod od najma">Prihod od najma</option>
+        <option value="Prihod od investicija">Prihod od investicija</option>
+        <option value="Ostalo">Ostalo</option>
+      </select>
+      <input type="number" id="prihodIznos" placeholder="Iznos (€)" />
+      <input type="text" id="prihodNapomena" placeholder="Bilješka (opcionalno)" />
+      <button onclick="dodajPrihod()">Dodaj prihod</button>
+    </div>
+
+    <!-- Dodaj trošak -->
+    <div class="section">
+      <h3>Dodaj trošak</h3>
+      <input type="date" id="trosakDatum" />
+      <select id="trosakKategorija">
+        <option value="Hrana">Hrana</option>
+        <option value="Stanovanje">Stanovanje</option>
+        <option value="Režije">Režije</option>
+        <option value="Prijevoz">Prijevoz</option>
+        <option value="Zdravstvo">Zdravstvo</option>
+        <option value="Obrazovanje">Obrazovanje</option>
+        <option value="Zabava">Zabava</option>
+        <option value="Putovanja">Putovanja</option>
+        <option value="Odjeća i obuća">Odjeća i obuća</option>
+        <option value="Ostalo">Ostalo</option>
+      </select>
+      <input type="number" id="trosakIznos" placeholder="Iznos (€)" />
+      <input type="text" id="trosakNapomena" placeholder="Bilješka (opcionalno)" />
+      <button onclick="dodajTrosak()">Dodaj trošak</button>
+    </div>
+
+    <!-- Pregled financija -->
+    <div class="section">
+      <h3>Pregled financija</h3>
+      <div id="accordionFinancije"></div>
+    </div>
+
+    <br />
+    <a href="profile.html" class="btn">Profil korisnika</a>
+    <a href="index.html" class="btn">Odjava</a>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

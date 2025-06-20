@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profil korisnika</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Profil korisnika</h2>
+
+    <p><strong>Korisničko ime:</strong> <span id="korisnickoIme"></span></p>
+    <p><strong>Email:</strong> <span id="korisnickiEmail"></span></p>
+    <p><strong>Država:</strong> <span id="korisnickaDrzava"></span></p>
+    <p><strong>Grad:</strong> <span id="korisnickiGrad"></span></p>
+    <p><strong>Datum rođenja:</strong> <span id="korisnickiDatum"></span></p>
+
+    <br />
+    <a href="dashboard.html" class="btn">Natrag na proračun</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+      if (!user) return window.location.href = "login.html";
+
+      document.getElementById("korisnickoIme").textContent = user.username;
+      document.getElementById("korisnickiEmail").textContent = user.email;
+      document.getElementById("korisnickaDrzava").textContent = user.drzava;
+      document.getElementById("korisnickiGrad").textContent = user.grad;
+      document.getElementById("korisnickiDatum").textContent = user.datumRodjenja;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prijava</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Prijava</h2>
+
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Lozinka" />
+    <button onclick="login()">Prijavi se</button>
+
+    <p>Nemaš račun? <a href="register.html">Registriraj se</a></p>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        return alert("Unesite email i lozinku.");
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        return alert("Neispravan email ili lozinka.");
+      }
+
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

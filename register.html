@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registracija</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Registracija</h2>
+
+    <input type="text" id="username" placeholder="Korisničko ime" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Lozinka" />
+    <input type="password" id="confirmPassword" placeholder="Potvrdi lozinku" oninput="provjeriLozinku()" />
+    <p id="porukaLozinka" style="font-size: 14px; margin-top: -10px;"></p>
+
+    <select id="drzava">
+      <option value="">Odaberi državu</option>
+      <!-- Popis država (skraćen za preglednost, ali u stvarnom kodu će biti kompletan) -->
+      <option value="Hrvatska">Hrvatska</option>
+      <option value="Bosna i Hercegovina">Bosna i Hercegovina</option>
+      <option value="Srbija">Srbija</option>
+      <option value="Slovenija">Slovenija</option>
+      <option value="Njemačka">Njemačka</option>
+      <option value="Austrija">Austrija</option>
+      <option value="Švicarska">Švicarska</option>
+      <option value="Sjedinjene Američke Države">Sjedinjene Američke Države</option>
+      <option value="Kanada">Kanada</option>
+      <option value="Ujedinjeno Kraljevstvo">Ujedinjeno Kraljevstvo</option>
+      <!-- Dodaj ostale države po potrebi -->
+    </select>
+
+    <input type="text" id="grad" placeholder="Grad" />
+    <label for="datumRodjenja">Datum rođenja:</label>
+    <input type="date" id="datumRodjenja" />
+
+    <button onclick="register()">Registriraj se</button>
+    <p>Već imaš račun? <a href="login.html">Prijavi se</a></p>
+  </div>
+
+  <script>
+    function provjeriLozinku() {
+      const lozinka = document.getElementById("password").value;
+      const potvrda = document.getElementById("confirmPassword").value;
+      const poruka = document.getElementById("porukaLozinka");
+
+      if (!potvrda) {
+        poruka.textContent = "";
+        return;
+      }
+
+      if (lozinka === potvrda) {
+        poruka.textContent = "Lozinke se podudaraju.";
+        poruka.style.color = "lightgreen";
+      } else {
+        poruka.textContent = "Lozinke se ne podudaraju.";
+        poruka.style.color = "red";
+      }
+    }
+
+    function register() {
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const drzava = document.getElementById("drzava").value;
+      const grad = document.getElementById("grad").value.trim();
+      const datumRodjenja = document.getElementById("datumRodjenja").value;
+
+      if (!username || !email || !password || !confirmPassword || !drzava || !grad || !datumRodjenja) {
+        return alert("Molimo ispunite sva polja.");
+      }
+
+      if (password !== confirmPassword) {
+        return alert("Lozinke se ne podudaraju.");
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some(u => u.username === username)) {
+        return alert("Korisničko ime već postoji.");
+      }
+
+      const newUser = {
+        username,
+        email,
+        password,
+        drzava,
+        grad,
+        datumRodjenja,
+        prihodi: [],
+        troskovi: []
+      };
+
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+      alert("Uspješna registracija.");
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
